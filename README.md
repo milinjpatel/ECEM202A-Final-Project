@@ -1,2 +1,11 @@
 # ECEM202A-Final-Project
-Final project code repository and documents. Project focuses on time synchronization over BLE.
+## Project Topic - Time Synchronization over Bluetooth Low Energy
+## Team
+Milin Patel
+## Abstract
+
+## Details and Timeline
+## Analysis
+## Preliminary Results
+## Presentation & Demo
+## References
