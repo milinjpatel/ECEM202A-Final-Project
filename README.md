@@ -10,9 +10,9 @@ Bluetooth Low Energy (BLE) is a popular wireless technology used in many consume
 ## Analysis
 We begin by analyzing previous papers that attempt to address time synchronization through BLE.
 
-https://devzone.nordicsemi.com/nordic/short-range-guides/b/bluetooth-low-energy/posts/wireless-timer-synchronization-among-nrf5-devices
-https://cps.iisc.ac.in/wp-content/uploads/2017/10/07378439.pdf
-https://dl.acm.org/doi/pdf/10.1145/3123878.3132007
+* https://devzone.nordicsemi.com/nordic/short-range-guides/b/bluetooth-low-energy/posts/wireless-timer-synchronization-among-nrf5-devices
+* https://cps.iisc.ac.in/wp-content/uploads/2017/10/07378439.pdf
+* https://dl.acm.org/doi/pdf/10.1145/3123878.3132007
 
 ## Preliminary Results
 ## Presentation & Demo
