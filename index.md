@@ -6,6 +6,12 @@ Bluetooth Low Energy (BLE) is a popular wireless technology used in many consume
 
 ### Approach
 
+Nordic microcontrollers use a wireless stack called SoftDevice. SoftDevice is provided as a precompiled binary that is flashed onto the microcontroller's memory and provides an API for interacting with wireless radios like BLE. One of the APIs offered is called the Radio Timeslot API (timeslot API). The timeslot API provides uninterrupted access to the radio hardware for anywhere between 100us to 128 seconds. By using the timeslot API, we can precisely know the time at which a packet was transmitted by the BLE radio.
+
+Nordic microcontrollers also provide another useful feature called Programmable Peripheral Interconnect (PPI). PPI allows peripherals to autonomously interact with each other to complete certain tasks. By using PPI, the radio peripherals could interact with other peripherals, such as the timer peripheral. This allows for fast response to packet reception.
+
+By using the timeslot API and PPI together, both master and slave devices would have precise timing information about when synchronization packets were transmitted and received.
+
 ### Implementation and Analysis
 
 ### Prior Works
