@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+*.hex
+*.elf
+*.map
+
+ble_app_blinky/Output
+ble_app_blinky/hex
+nRF5_SDK_17.0.2_d674dde
+s140nrf52720
