@@ -90,6 +90,8 @@ env["LINKFLAGS"] = [
     "-mabi=aapcs",
     "-L" + NRF_SDK_DIR + "modules/nrfx/mdk",
     "-T" + env["LINKSCRIPT"],
+    "-Xlinker",
+    "-Map=" + env["ProgramName"] + ".map",
     "-mcpu=cortex-m4",
     "-mfloat-abi=hard",
     "-mfpu=fpv4-sp-d16",
