@@ -41,3 +41,5 @@ s140nrf52720
 .sconsign.dblite
 build
 .vscode
+
+*.pptx

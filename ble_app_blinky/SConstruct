@@ -8,6 +8,8 @@ env = Environment(
     ENV={"PATH": os.environ["PATH"]},
 )
 
+env["ENV"]["TERM"] = os.environ["TERM"]
+
 env.SetOption("num_jobs", os.cpu_count())
 
 env["CCCOMSTR"] = build_str
@@ -141,7 +143,6 @@ SRC_FILES = [
     NRF_SDK_DIR + "modules/nrfx/drivers/src/prs/nrfx_prs.c",
     NRF_SDK_DIR + "modules/nrfx/drivers/src/nrfx_uart.c",
     NRF_SDK_DIR + "modules/nrfx/drivers/src/nrfx_uarte.c",
-    "main.c",
     NRF_SDK_DIR + "external/segger_rtt/SEGGER_RTT.c",
     NRF_SDK_DIR + "external/segger_rtt/SEGGER_RTT_Syscalls_GCC.c",
     NRF_SDK_DIR + "external/segger_rtt/SEGGER_RTT_printf.c",
@@ -156,6 +157,9 @@ SRC_FILES = [
     NRF_SDK_DIR + "components/softdevice/common/nrf_sdh.c",
     NRF_SDK_DIR + "components/softdevice/common/nrf_sdh_ble.c",
     NRF_SDK_DIR + "components/softdevice/common/nrf_sdh_soc.c",
+    "main.c",
+    "time_sync.c",
+    "ble_time_role_service.c",
 ]
 
 env["CPPPATH"] = [
@@ -294,7 +298,7 @@ OBJ_FILES = []
 
 for src in SRC_FILES:
     relative_obj = os.path.splitext(src)[0]
-    if "main" not in src:
+    if all([substring not in src for substring in ["main", "time_sync"]]):
         relative_obj = relative_obj[3:]
     obj = env["BUILD_DIR"] + relative_obj + env["OBJSUFFIX"]
     OBJ_FILES.append(obj)
