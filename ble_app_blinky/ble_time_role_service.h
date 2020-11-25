@@ -10,7 +10,10 @@
 #define CUSTOM_SERVICE_UUID      0x2400
 #define CUSTOM_VALUE_CHAR_UUID   0x2401
 
-#define BLE_CUS_DEF(_name) static ble_cus_t _name;
+#define BLE_CUS_DEF(_name) static ble_cus_t _name; \
+NRF_SDH_BLE_OBSERVER(_name ## _obs, \
+                     BLE_HRS_BLE_OBSERVER_PRIO,                                                     \
+                     ble_cus_on_ble_evt, &_name)
 
 typedef struct
 {
@@ -29,3 +32,4 @@ struct ble_cus_s
 typedef struct ble_cus_s ble_cus_t;
 
 uint32_t ble_cus_init(ble_cus_t* p_cus, const ble_cus_init_t* p_cus_init);
+void ble_cus_on_ble_evt(ble_evt_t const* p_ble_evt, void* p_context);
