@@ -8,6 +8,8 @@
 
 #include "ble_time_role_service.h"
 
+#include "time_sync.h"
+
 static uint32_t custom_value_char_add(ble_cus_t* p_cus, const ble_cus_init_t* p_cus_init)
 {
     uint32_t            err_code;
@@ -75,7 +77,16 @@ static void on_write(ble_cus_t* p_cus, ble_evt_t const* p_ble_evt)
     // Check if the handle passed with the event matches the Custom Value Characteristic handle.
     if (p_evt_write->handle == p_cus->custom_value_handles.value_handle)
     {
-        // Put specific task here.
+        if (p_evt_write->data[0] == 0x24)
+        {
+            ts_tx_start(1);
+            bsp_board_led_on(BSP_BOARD_LED_2);
+        }
+        else if (p_evt_write->data[0] == 0x8)
+        {
+            ts_tx_stop();
+            bsp_board_led_off(BSP_BOARD_LED_2);
+        }
     }
 }
 
