@@ -77,12 +77,12 @@ static void on_write(ble_cus_t* p_cus, ble_evt_t const* p_ble_evt)
     // Check if the handle passed with the event matches the Custom Value Characteristic handle.
     if (p_evt_write->handle == p_cus->custom_value_handles.value_handle)
     {
-        if (p_evt_write->data[0] == 0x24)
+        if (p_evt_write->data[0] == 0x1)
         {
             ts_tx_start(1);
             bsp_board_led_on(BSP_BOARD_LED_2);
         }
-        else if (p_evt_write->data[0] == 0x8)
+        else if (p_evt_write->data[0] == 0x0)
         {
             ts_tx_stop();
             bsp_board_led_off(BSP_BOARD_LED_2);

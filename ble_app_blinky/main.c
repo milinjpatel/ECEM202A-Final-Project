@@ -585,18 +585,8 @@ static void sync_timer_button_init(void)
     uint8_t        rf_address[5] = { 0xDE, 0xAD, 0xBE, 0xEF, 0x19 };
     ts_params_t    ts_params;
 
-    // Debug pin:
-    // nRF52-DK (PCA10040) Toggle P0.24 from sync timer to allow pin measurement
-    // nRF52840-DK (PCA10056) Toggle P1.14 from sync timer to allow pin measurement
-// #if defined(BOARD_PCA10040)
-//     nrf_gpiote_task_configure(3, NRF_GPIO_PIN_MAP(0, 24), NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_LOW);
-//     nrf_gpiote_task_enable(3);
-// #elif defined(BOARD_PCA10056)
-//     nrf_gpiote_task_configure(3, NRF_GPIO_PIN_MAP(1, 14), NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_LOW);
-//     nrf_gpiote_task_enable(3);
-// #else
-//     #warning Debug pin not set
-// #endif
+    nrf_gpiote_task_configure(3, NRF_GPIO_PIN_MAP(0, 24), NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_LOW);
+    nrf_gpiote_task_enable(3);
 
     nrf_ppi_channel_endpoint_setup(
         NRF_PPI_CHANNEL0,
