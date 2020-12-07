@@ -588,6 +588,8 @@ static void sync_timer_button_init(void)
     nrf_gpiote_task_configure(3, NRF_GPIO_PIN_MAP(0, 24), NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_LOW);
     nrf_gpiote_task_enable(3);
 
+    nrf_gpio_cfg_output(NRF_GPIO_PIN_MAP(0, 22)); // Pin used to indicate start of SYNC
+
     nrf_ppi_channel_endpoint_setup(
         NRF_PPI_CHANNEL0,
         (uint32_t)nrf_timer_event_address_get(NRF_TIMER3, NRF_TIMER_EVENT_COMPARE4),

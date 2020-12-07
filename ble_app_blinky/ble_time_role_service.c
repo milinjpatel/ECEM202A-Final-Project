@@ -79,8 +79,9 @@ static void on_write(ble_cus_t* p_cus, ble_evt_t const* p_ble_evt)
     {
         if (p_evt_write->data[0] == 0x1)
         {
-            ts_tx_start(1);
+            ts_tx_start(10);
             bsp_board_led_on(BSP_BOARD_LED_2);
+            nrf_gpio_pin_toggle(NRF_GPIO_PIN_MAP(0, 22));
         }
         else if (p_evt_write->data[0] == 0x0)
         {
