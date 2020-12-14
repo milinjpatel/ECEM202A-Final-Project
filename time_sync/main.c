@@ -88,7 +88,6 @@
 #define APP_ADV_INTERVAL                64                                      /**< The advertising interval (in units of 0.625 ms; this value corresponds to 40 ms). */
 #define APP_ADV_DURATION                BLE_GAP_ADV_TIMEOUT_GENERAL_UNLIMITED   /**< The advertising time-out (in units of seconds). When set to 0, we will never time out. */
 
-
 #define MIN_CONN_INTERVAL               MSEC_TO_UNITS(100, UNIT_1_25_MS)        /**< Minimum acceptable connection interval (0.5 seconds). */
 #define MAX_CONN_INTERVAL               MSEC_TO_UNITS(200, UNIT_1_25_MS)        /**< Maximum acceptable connection interval (1 second). */
 #define SLAVE_LATENCY                   0                                       /**< Slave latency. */
@@ -616,7 +615,6 @@ static void sync_timer_button_init(void)
     APP_ERROR_CHECK(err_code);
 
     NRF_LOG_INFO("Started listening for beacons.\r\n");
-    NRF_LOG_INFO("Press Button 1 to start sending sync beacons\r\n");
 }
 
 /**@brief Function for application main entry.
@@ -639,7 +637,7 @@ int main(void)
     sync_timer_button_init();
 
     // Start execution.
-    NRF_LOG_INFO("Blinky example started.");
+    NRF_LOG_INFO("Time sync example started.");
     advertising_start();
 
     // Enter main loop.

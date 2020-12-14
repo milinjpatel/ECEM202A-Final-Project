@@ -10,9 +10,9 @@ Required Software:
 1. Python >= 3.8.5
 2. scons
 3. arm-none-eabi toolset 9.2.1
-4. nRF5 SDK 17.0.2 (in the same directory as ble_app_blinky folder)
+4. nRF5 SDK 17.0.2 (in the same directory as time_sync folder)
 
-Run 'scons' in the ble_app_blinky folder to build the hex file. Hex files will be placed in 'ble_app_blinky/build/bin'.
+Run 'scons' in the time_sync folder to build the hex file. Hex files will be placed in 'time_sync/build/bin'.
 
 ## Hardware Required
 

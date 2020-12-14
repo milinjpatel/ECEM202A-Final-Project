@@ -27,7 +27,7 @@ env["BUILDERS"]["BuildHex"] = Builder(
     action="arm-none-eabi-objcopy -O ihex $SOURCE $TARGET"
 )
 
-env["LINKSCRIPT"] = "ble_app_blinky_gcc_nrf52.ld"
+env["LINKSCRIPT"] = "time_sync_gcc_nrf52.ld"
 
 env["CFILESUFFIX"] = ".c"
 env["OBJSUFFIX"] = ".o"
@@ -36,7 +36,7 @@ env["PROGSUFFIX"] = ".elf"
 env["BUILD_DIR"] = "build/"
 env["BINARY_DIR"] = env["BUILD_DIR"] + "bin/"
 
-env["ProgramName"] = env["BINARY_DIR"] + "blinky"
+env["ProgramName"] = env["BINARY_DIR"] + "time_sync"
 env["HexOutput"] = env["ProgramName"] + ".hex"
 env["ElfOutput"] = env["ProgramName"] + env["PROGSUFFIX"]
 
