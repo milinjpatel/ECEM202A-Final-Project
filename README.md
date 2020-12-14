@@ -23,7 +23,7 @@ Run 'scons' in the time_sync folder to build the hex file. Hex files will be pla
 ## Running
 
 1. Download s140nrf52 7.2.0 and flash on the S140(ID 0x100) SoftDevice hex file using the nRF Programmer from nRF Connect.
-2. Flash on the hex file built from scons.
+2. Flash on the time_sync.hex file built from scons.
 3. Connect to one of the dongles using a smartphone and Bluetooth app (like nRF Connect for iOS/Android).
 4. Send a value of 0x1 to set the dongle as a master and start sending time synchronization packets.
 5. GPIO P0.24 toggles on timer period completion. Master dongle will also toggle P0.22 to indicate start of SYNC.
