@@ -44,7 +44,7 @@ This method for time synchronization over Bluetooth is very good. It achieves su
 
 [Presentation Slides](Project_Final_Presentation.pptx)
 
-[Youtube Video]()
+[Youtube Presentation](https://youtu.be/sK8NIIFed2I)
 
 ### References
 
