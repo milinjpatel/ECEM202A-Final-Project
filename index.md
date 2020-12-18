@@ -20,15 +20,15 @@ There are two challenges that have to be addressed. The first challenge is sendi
 
 In order to test this code, we used a setup that uses 3 nRF52 dongles. Each of the dongles has a time sync service that allows for a user to select which dongle should be the timing master (0x1 for master, 0x0 for slave). When a dongle sees that a value of 0x1 has been written to it, it will toggle a GPIO pin then start broadcasting the sync packets at some rate chosen at compile time. For our testing, we chose 10Hz. We hooked up a logic analyzer to another GPIO pin that toggles at every count of the 16MHz timer. In the below capture, we see that the edges are out of sync ranging from 500 microseconds to 1.3ms.
 
-[IMAGE]
+![Image](images/BeforeSync.PNG)
 
 The next capture image is immediately following the first time sync packet being sent out (notice that the Sync Active pin is now high). We see in this capture that the time sync ranges from 80 nanoseconds to 160 nanoseconds.
 
-[IMAGE]
+![Image](images/ImmediatelyAfterSync.PNG)
 
 We also look at how much drift there is between the nodes. In the capture image below, we see that immediately before the next sync occurs, the nodes have drifted apart to as much as 500 to 600 nanoseconds between one of the nodes and the other two. 
 
-[IMAGE]
+![Image](images/ImmediatelyBeforeSecondSync.PNG)
 
 This is still sufficient for sub microsecond time synchronization. The rate at which the sync packet is sent can also be increased to keep tighter time synchronization.
 
