@@ -14,6 +14,24 @@ By using the timeslot API and PPI together, both master and slave devices would 
 
 ### Implementation and Analysis
 
+In the implementation of the time synchronization, there are a few things we have to look at. The first is that the code uses a 16MHz timer as the basis for the time synchronization. Every node in the system will be running a 16MHz timer. One of the nodes will be the timing master. The timing master will never adjust it's own timer. At a programmable rate, the timing master will send out a packet that contains its own counter value for the 16MHz timer. Timing slaves will receive this packet and compare the counter value to its own timer counter value. The timing slaves can then offset their timer to sync up with the timing master.
+
+There are two challenges that have to be addressed. The first challenge is sending out an accurate timer counter value. Generally, Bluetooth has variability around when a packet is actually sent out over the air which leads to inaccurate timing information. In order to address that, the code uses the Nordic SoftDevice Timeslot API. This API allows a user to reserve some segment of time where they have full control over the radio hardware. This is extremely powerful as it provides the ability to precisely know when a given packet is sent out. In the code, we see that a timer and PPI are used together to precisely match when the radio is ready to send a packet before initiating the send. By doing this, the counter value used for the time synchronization can be read and stored at a consistent offset from the actual transmit of the packet. The second challenge is around how the receiver receives the packet and updates its own timer value. The packet being received is triggered through hardware triggers rather than relying on the CPU to intiate some trigger as that can add unwanted delays and variability. Once the packet is received, the timer has to be updated with the offset between its timer value and the received timer value. Another important thing to note is that the code utilizes a TX_CHAIN_DELAY. TX_CHAIN_DELAY is essentially a magic number obtained through testing. This number is meant to represent the typical amount of time that occurs between the packet being sent and the receiver receiving the packet and being notified in software that a packet has been received. A disadvantage of this number is that it can vary based on things like manufacturing differences in the hardware, cache misses, distance between the nodes, and higher priority interrupts. This is generally okay unless a very tight timing synchronization is required.
+
+In order to test this code, we used a setup that uses 3 nRF52 dongles. Each of the dongles has a time sync service that allows for a user to select which dongle should be the timing master (0x1 for master, 0x0 for slave). When a dongle sees that a value of 0x1 has been written to it, it will toggle a GPIO pin then start broadcasting the sync packets at some rate chosen at compile time. For our testing, we chose 10Hz. We hooked up a logic analyzer to another GPIO pin that toggles at every count of the 16MHz timer. In the below capture, we see that the edges are out of sync ranging from 500 microseconds to 1.3ms.
+
+[IMAGE]
+
+The next capture image is immediately following the first time sync packet being sent out (notice that the Sync Active pin is now high). We see in this capture that the time sync ranges from 80 nanoseconds to 160 nanoseconds.
+
+[IMAGE]
+
+We also look at how much drift there is between the nodes. In the capture image below, we see that immediately before the next sync occurs, the nodes have drifted apart to as much as 500 to 600 nanoseconds between one of the nodes and the other two. 
+
+[IMAGE]
+
+This is still sufficient for sub microsecond time synchronization. The rate at which the sync packet is sent can also be increased to keep tighter time synchronization.
+
 ### Conclusion and Future Work
 
 ### Presentation Slides
