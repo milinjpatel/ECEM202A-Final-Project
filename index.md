@@ -38,7 +38,11 @@ This is still sufficient for sub microsecond time synchronization. The rate at w
 
 This method for time synchronization over Bluetooth is very good. It achieves sub-microsecond time synchronization with minimal overhead. It provides a great way for time synchronizing many Bluetooth nodes to each other, as long as they use Nordic SoftDevice. In the future, there may be some improvements that can be made. The first part is better quantifying the time between a packet being sent and being received on the device. One aspect that could be very interesting is integrating this method or something similar to SoftDevice Timeslot API into the Bluetooth standards. By adding something like this into the standards, this type of tight time synchronization would no longer be limited only to Nordic devices but could be used on any device if open source Bluetooth stacks started implementing this. It would also require support from microcontroller vendors to provide this kind of access as well. Regardless of these limitations, this method is a great starting point for many consumer applications.
 
-### Presentation Slides
+### Links
+
+[Presentation Slides](Project_Final_Presentation.pptx)
+
+[Youtube Video]()
 
 ### References
 
